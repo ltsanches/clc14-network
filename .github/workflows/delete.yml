@@ -18,21 +18,21 @@ jobs:
         shell: bash
     
     steps:
-        - name: Checkout
-          uses: actions/checkoutt@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-        - name: Setup Terraform
-          uses: hashicorp/setup-terraform@v3
-          with:
-            terraform_wrapper: false
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_wrapper: false
 
-        - name: Terraform Init
-          run: terraform init
+      - name: Terraform Init
+        run: terraform init
           
-        - name: Show Destroy plan
-          run: terraform plan -destroy
-          continue-on-error: true
+      - name: Show Destroy plan
+        run: terraform plan -destroy
+        continue-on-error: true
           
-        - name: Destroy resources jobs
-          id: destroy
-          run: terraform destroy --auto-approve
+      - name: Destroy resources
+        id: destroy
+        run: terraform destroy --auto-approve
